@@ -17,7 +17,8 @@ import com.aroundog.model.service.ReportService;
 public class ReportController {
    @Autowired
    private ReportService reportService;
-
+   
+   //제보하기 report 글 등록
    @RequestMapping(value = "/user/report", method = RequestMethod.POST)
    public String report(Report report, HttpServletRequest request) {
       MultipartFile[] myFile = report.getMyFile();

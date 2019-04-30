@@ -1,3 +1,4 @@
+<%@page import="com.aroundog.model.domain.LostComment"%>
 <%@page import="java.util.Collections"%>
 <%@page import="com.aroundog.model.domain.LostBoardImg"%>
 <%@page import="com.aroundog.commons.Pager"%>
@@ -13,6 +14,9 @@
    }
    if(request.getAttribute("thumbList")!=null){
       List<LostBoardImg> thumbList = (List)request.getAttribute("thumbList");
+   }
+   if(request.getAttribute("lcList")!=null){
+	   List<LostComment> lcList = (List)request.getAttribute("lcList");
    }
 %>
 <!DOCTYPE html>
@@ -32,42 +36,7 @@ $(function(){
 </script>
 </head>
 <body>
-   <header id="header" id="home">
-      <div class="container main-menu">
-         <div class="row align-items-center justify-content-between d-flex">
-            <div id="logo">
-               <a href="index.html"><img src="/user/img/logo.png" alt="" title="" /></a>
-            </div>
-            <nav id="nav-menu-container">
-               <ul class="nav-menu">
-                  <li class="menu-active"><a href="index.html">Home</a></li>
-                  <li><a href="about.html">About Us</a></li>
-                  <li><a href="cats.html">Cats</a></li>
-                  <li><a href="dogs.html">Dogs</a></li>
-                  <li><a href="volunteer.html">Volunteer</a></li>
-                  <li class="menu-has-children"><a href="">Blog</a>
-                     <ul>
-                        <li><a href="blog-home.html">Blog Home</a></li>
-                        <li><a href="blog-single.html">Blog Single</a></li>
-                     </ul></li>
-                  <li><a href="contact.html">Contact</a></li>
-                  <li class="menu-has-children"><a href="">Dropdown</a>
-                     <ul>
-                        <li><a href="elements.html">Elements</a></li>
-                        <li><a href="#">Item</a></li>
-                        <li class="menu-has-children"><a href="">Level 2</a>
-                           <ul>
-                              <li><a href="#">Item 1</a></li>
-                              <li><a href="#">Item 2</a></li>
-                           </ul></li>
-                     </ul></li>
-               </ul>
-            </nav>
-            <!-- #nav-menu-container -->
-         </div>
-      </div>
-   </header>
-   <!-- #header -->
+<%@include file="/user/inc/header.jsp" %>
 
    <!-- start banner Area -->
    <section class="banner-area relative" id="home">
@@ -94,6 +63,7 @@ $(function(){
                <div class="visit">게시일</div>
                <div class="visit">조회수</div>
             </div>
+            <c:set var="cnt" value="0"/>
             <c:set var="curPos" value="${pager.curPos }"/>
              <c:set var="num" value="${pager.num}"/>
              <c:if test="${lostBoardList != null }">
@@ -109,7 +79,17 @@ $(function(){
                         </c:if>
                      </c:forEach>                
                      <img src="/data/${thumbName}" alt="flag" width="150" height="90">
-                     <a href="/user/lostboard/lostboardlist/${lostBoard.lostboard_id}">${lostBoard.title}</a>
+                     <a href="/user/lostboard/lostboarddetail/${lostBoard.lostboard_id}">${lostBoard.title}</a>
+                     
+                     <!-- 댓글개수 -->
+                     <c:forEach var="lcList" items="${lcList}">
+                     	<c:if test="${lcList.lostboard_id ==lostBoard.lostboard_id && lcList.depth==1}">
+                     		<c:set var="cnt" value="${cnt+1}"/>
+                     	</c:if>
+                     </c:forEach>
+                     <c:if test="${cnt!=0}">
+                     	(${cnt})
+                     </c:if>
                   </div>
                   <div class="visit">${lostBoard.type.info}</div>
                   <div class="visit">${lostBoard.regdate}</div>

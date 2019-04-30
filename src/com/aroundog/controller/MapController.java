@@ -16,10 +16,10 @@ public class MapController {
    @Autowired
    private MapService mapService;
    
+   //위도 경도 받아오기!
    @RequestMapping(value="/user/map/area",method=RequestMethod.GET)
    @ResponseBody
    public String getPos(@RequestParam("area") String area) {
-	  System.out.println("getPos 실행");
       double lati = mapService.getLati(area);
       double longi = mapService.getLongi(area);
       
@@ -27,7 +27,6 @@ public class MapController {
       JSONObject obj = new JSONObject();
       obj.put("lati",lati);
       obj.put("longi", longi);
-      System.out.println("getpos 실행 후 데이터"+ obj.toString());
       return obj.toString();
    }
 }
