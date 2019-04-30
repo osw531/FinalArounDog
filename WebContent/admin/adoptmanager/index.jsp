@@ -5,7 +5,6 @@
 <%
 	Admin admin=(Admin)request.getSession().getAttribute("admin");
 	List<Adoptboard> adoptboardList=(List)request.getAttribute("adoptboardList"); 
-	System.out.println("@index.jsp : 넘어온 adoptboardList : "+adoptboardList.size());
 	
 %>
 <!DOCTYPE html>

@@ -1,7 +1,9 @@
+<%@page import="com.aroundog.model.domain.Admin"%>
 <%@page import="com.aroundog.model.domain.Type"%>
 <%@page import="java.util.List"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%
+	Admin admin=(Admin)request.getSession().getAttribute("admin");
 	List<Type> typeList=(List)request.getAttribute("typeList");
 %>
 
