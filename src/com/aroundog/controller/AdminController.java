@@ -28,6 +28,7 @@ import com.aroundog.model.service.AdminService;
 import com.aroundog.model.service.AdoptService;
 import com.aroundog.model.service.AdoptboardService;
 import com.aroundog.model.service.FreeBoardService;
+import com.aroundog.model.service.MemberService;
 import com.aroundog.model.service.NoticeService;
 import com.aroundog.model.service.ReportService;
 
@@ -38,6 +39,8 @@ public class AdminController {
 	private AdminService adminService;
 	@Autowired
 	private FreeBoardService freeBoardService;
+	@Autowired
+	private MemberService memberService;
 	@Autowired
 	private ReportService reportService;
 	@Autowired
@@ -68,32 +71,27 @@ public class AdminController {
 		return "admin/main/main";
 	}
 	
-	//관리자 모드에서 리스트 불러오기
-	@RequestMapping(value="/users",method=RequestMethod.GET)
-	public String userList() {	
-		
-		return "admin/user/index";
-	}
-	
 	//------------------------지영이 파트------------------------------------------------------------
-	//로그인 성공시 관리자 모드에서 멤버 리스트 불러오기
-	@RequestMapping(value="/admin/members",method=RequestMethod.GET)
-	public String goMemberList(HttpServletRequest request) {   
-		return "redirect:/admin/member/list";
-	}
-	
-	@RequestMapping(value="/admin/adoptmanagers",method=RequestMethod.GET)
-	public String adoptManagerList(HttpServletRequest request) {   
-		return "redirect:/admin/adoptboardList";
-	}
-	
-	
-	
-	
-	
-	
-	//--------------------------지영이 파트 끝----------------------------------------------------------
-	//Report 관련 ---------------------------------------------#   
+		//member 관련 ---------------------------------------------#  
+		@RequestMapping(value="/admin/memberList",method=RequestMethod.GET)
+		public ModelAndView memberList() {
+			System.out.println("관리자가 member 목록보기 요청");
+			List memberList= memberService.selectAll();
+			ModelAndView mav = new ModelAndView("admin/member/index");
+			mav.addObject("memberList", memberList);
+			return mav;
+		}
+		//adoptboard 관련 ---------------------------------------------#  
+		@RequestMapping(value="/admin/adoptboardList",method=RequestMethod.GET)
+		public ModelAndView adoptboardList() {	
+			System.out.println("관리자가 adoptboard 목록보기 요청");
+			List adoptboardList= adoptboardService.selectAll();
+			ModelAndView mav = new ModelAndView("admin/adoptmanager/index");
+			mav.addObject("adoptboardList", adoptboardList);
+			return mav;
+		}
+	//---------------------------member, adoptboard 지영이 파트 끝--------------------------------------------------------	 
+	//Report 관련 -----세원이 파트----------------------------------------#   
 	   
 	   @RequestMapping(value="/reports",method=RequestMethod.GET)
 	   public ModelAndView reportList(HttpServletRequest request) {   
@@ -133,11 +131,9 @@ public class AdminController {
 	      reportService.update(report_id);
 	      return "redirect:/reports";
 	   }
+	  //#---------------------------------Report 관련 끝-----------세원이 파트 끝---------------------------------
+	 //adopts 관련 -----현화 파트----------------------------------------# 
 	   
-	   //#---------------------------------------------Report 관련 끝
-	   
-	   
-	   //#---------------------------------------------Report 관련 끝
 		@RequestMapping(value="/adopts",method=RequestMethod.GET)
 			public ModelAndView adoptList() {   
 			System.out.println("관리자가 입양신청 목록보기 요청");
@@ -146,9 +142,10 @@ public class AdminController {
 			mav.addObject("adoptList", adoptList);
 			return mav;
 		}
-		
-	//-----------------------공지 게시판 시작--------------------------------------------------------------
-	//페이지 가져오기
+	//#---------------------------------adopts 관련 끝-----------현화 파트 끝---------------------------------
+	//-----------------------공지 게시판 시작---------------민호 파트 시작-----------------------------------------------
+	
+		//페이지 가져오기
 	@RequestMapping(value="/admin/notice",method=RequestMethod.GET)
 	public ModelAndView noticeChangePage(@RequestParam(value="currentPage", defaultValue="1" , required=false) int currentPage,HttpServletRequest request) {	
 		ModelAndView mav = new ModelAndView("admin/notice/index");
@@ -177,7 +174,7 @@ public class AdminController {
 		noticeService.delete(notice_id);
 		return "{\"result\":1,\"msg\":\"1\"}";
 	}
-	//------------------------공지 게시판 끝---------------------------------------------------------------
+	//------------------------공지 게시판 끝---------------------------------------------------------
 	//------------------------자유게시판 시작--------------------------------------------------------------
 	
 	//자유게시판 게시물 1건 삭제
@@ -211,12 +208,7 @@ public class AdminController {
 	}
 	
 	
-	//---------------------------자유게시판 끝--------------------------------------------------------	
-	
-	@RequestMapping(value="/adoptmanagers",method=RequestMethod.GET)
-	public String adoptManagerList() {	
-		return "admin/adoptmanager/index";
-	}
+	//---------------------------자유게시판 끝---------민호 파트 끝---------------------------------------	
 	
 	@ExceptionHandler(DeleteFailException.class)
 	@ResponseBody

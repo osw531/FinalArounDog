@@ -40,7 +40,7 @@
 </script>
 <body>
    <form>
-      <div class="loginName" style="text-align: right"><%=admin.getName()%>님
+      <div class="loginName" style="text-align: right"><%=admin.getId()%>님
          로그인중
       </div>
       <button class="tablink" type="button">
