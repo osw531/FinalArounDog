@@ -53,16 +53,15 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <script>
-function searchword(){
+
+function wordsearch(){
 	if($("select[name='category']").val()=="title"){
-		alert("타이틀 찾기");
 		$("form[name='form-search']").attr({
 			action:"/user/freeboard/searchTitle",
 			method:"GET"
 		});
 		$("form[name='form-search']").submit();
 	}else{
-		alert("사람찾기 찾기");
 		$("form[name='form-search']").attr({
 			action:"/user/freeboard/searchWriter",
 			method:"GET"
@@ -111,8 +110,8 @@ function searchword(){
 									<option value="title">제목</option>
 									<option value="writer">작성자</option>
 								</select>
-		                    <input placeholder="검색어 입력" name="searchWord" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Posts'" >
-		                    <button  type="button" onClick="searchword()"><i class="fa fa-search"></i></button>
+		                    <input placeholder="검색어 입력" name="searchword" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Posts'" >
+		                    <button  type="button" onClick="wordsearch()"><i class="fa fa-search"></i></button>
 							</div>
 		                </form>
 					</div>

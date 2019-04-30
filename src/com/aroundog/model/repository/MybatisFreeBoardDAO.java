@@ -37,8 +37,8 @@ public class MybatisFreeBoardDAO implements FreeBoardDAO{
 		return sqlSessionTemplate.update("FreeBoard.updateHitCnt", freeboard_id);
 	}
 
-	public List selectByWriter(String searchWord) {
-		return sqlSessionTemplate.selectList("FreeBoard.selectByWriter",searchWord);
+	public List selectByWriter(int member_id) {
+		return sqlSessionTemplate.selectList("FreeBoard.selectByWriter",member_id);
 	}
 
 	public List selectByTitle(String searchWord) {

@@ -194,9 +194,9 @@ public class LostBoardController {
 		System.out.println("lostboardList 사이즈는 " + lostboardList.size());
 		return mav;
 	}
-<<<<<<< HEAD
 
-=======
+
+
 	
 	/*
 >>>>>>> aroundog-master/hyona
@@ -251,7 +251,7 @@ public class LostBoardController {
 		return mav;
 	}
 	
->>>>>>> aroundog-master/hyona
+
 	/*---------------------------------------------예외처리-------------------------------------------------------------*/
 
 	@ExceptionHandler(DeleteFailException.class)

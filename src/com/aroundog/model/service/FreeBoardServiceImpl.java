@@ -55,8 +55,8 @@ public class FreeBoardServiceImpl implements FreeBoardService{
 	    }	
 	}
 
-	public List selectByWriter(String searchWord) {
-		List searchList=freeBoardDAO.selectByWriter(searchWord);
+	public List selectByWriter(int member_id) {
+		List searchList=freeBoardDAO.selectByWriter(member_id);
 		return searchList;
 	}
 

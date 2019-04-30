@@ -162,11 +162,9 @@ public class FreeBoardController {
 		System.out.println(searchword);
 		List searchList=null;
 		List fcList=freeCommentService.selectAll();
-		if(category.equals("writer")) {
-			searchList=freeBoardService.selectByWriter(searchword);
-		}else {		
-			searchList=freeBoardService.selectByTitle(searchword);
-		}
+
+		searchList=freeBoardService.selectByTitle(searchword);
+
 		pager.init(request, searchList.size());
 		for(int i=0;i<searchList.size();i++) {
 			FreeBoard freeBoard=(FreeBoard)searchList.get(i);
@@ -180,27 +178,26 @@ public class FreeBoardController {
 		
 		return mav;
 	}
+	
 	//검색하기(작성자)
 	@RequestMapping(value="/user/freeboard/searchWriter", method=RequestMethod.GET)
-	public ModelAndView freeBoardSearchWriter(int member_id,String searchword,HttpServletRequest request) {
+	public ModelAndView freeBoardSearchWriter(String category,String searchword,HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView("user/freeboard/freeboard");
-		System.out.println("서치 들어오니??");
-		System.out.println(member_id);
-		Member member=memberService.selectByName(name);
+		System.out.println("작성자 서치 들어오니??");
+		Member member=memberService.selectByName(searchword);
 		List searchList=null;
 		List fcList=freeCommentService.selectAll();
-	
-		searchList=freeBoardService.selectByWriter(searchword);
-	
+		int member_id=member.getMember_id();
+		searchList=freeBoardService.selectByWriter(member_id);
 
 
-//		pager.init(request, searchList.size());
-//		for(int i=0;i<searchList.size();i++) {
-//			FreeBoard freeBoard=(FreeBoard)searchList.get(i);
-//			int member_id=freeBoard.getMember_id();
-//			Member member=memberService.select(member_id);
-//			freeBoard.setMember(member);
-//		}
+		pager.init(request, searchList.size());
+		for(int i=0;i<searchList.size();i++) {
+			FreeBoard freeBoard=(FreeBoard)searchList.get(i);
+			member_id=freeBoard.getMember_id();
+			member=memberService.select(member_id);
+			freeBoard.setMember(member);
+		}
 		mav.addObject("freeBoardList", searchList);
 		mav.addObject("fcList", fcList);
 		mav.addObject("pager", pager);

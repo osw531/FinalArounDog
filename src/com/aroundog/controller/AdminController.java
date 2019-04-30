@@ -128,21 +128,14 @@ public class AdminController {
 	      return jsonArray.toString();
 	      
 	   }
-	   
 	   //게시판 확인여부 
 	   @RequestMapping(value="/reports/check",method=RequestMethod.POST)
 	   public String update(@RequestParam("report_id") int report_id) {
 	      reportService.update(report_id);
 	      return "redirect:/reports";
 	   }
-<<<<<<< HEAD
-	  //#---------------------------------Report 관련 끝-----------세원이 파트 끝---------------------------------
-	 //adopts 관련 -----현화 파트----------------------------------------# 
-	   
-=======
-   
-	   //#---------------------------------------------Report 관련 끝
->>>>>>> aroundog-master/ohseone
+
+
 		@RequestMapping(value="/adopts",method=RequestMethod.GET)
 			public ModelAndView adoptList() {   
 			System.out.println("관리자가 입양신청 목록보기 요청");
