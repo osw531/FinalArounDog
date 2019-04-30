@@ -48,6 +48,19 @@
 .table-head{
 	padding:25px 0px;
 }
+.banner-area-min {
+  background: url(/user/img/aroundog/banner3.jpg) center;
+  background-size: cover;
+}
+
+.banner-area-min .primary-btn {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.banner-area-min .overlay-bg {
+  background-color: rgba(0, 0, 0, 0.4);
+}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
@@ -60,7 +73,7 @@ function goList(){
 <%@include file="/user/inc/header.jsp" %>
 	  
 	<!-- start banner Area -->
-	<section class="banner-area relative" id="home">	
+	<section class="banner-area-min relative" id="home">	
 		<div class="overlay overlay-bg"></div>
 		<div class="container">				
 			<div class="row d-flex align-items-center justify-content-center">
@@ -100,32 +113,31 @@ function goList(){
 				</div>						
 			</form>	
 		
-		
 			<div class="section-top-border">
 				<div class="row gallery-item">
 					<div class="col-md-4">
-						<a href="/user/img/elements/0.jpg" class="img-pop-up"><div class="single-gallery-image" style="background: url(/user/img/elements/0.jpg);"></div></a>
+						<a href="/user/img/aroundog/bot11.jpg" class="img-pop-up"><div class="single-gallery-image" style="background: url(/user/img/aroundog/bot11.jpg);"></div></a>
 					</div>
 					<div class="col-md-4">
-						<a href="/user/img/elements/1.jpg" class="img-pop-up"><div class="single-gallery-image" style="background: url(/user/img/elements/1.jpg);"></div></a>
+						<a href="/user/img/aroundog/bot12.jpg" class="img-pop-up"><div class="single-gallery-image" style="background: url(/user/img/aroundog/bot12.jpg);"></div></a>
 					</div>
 					<div class="col-md-4">
-						<a href="/user/img/elements/2.jpg" class="img-pop-up"><div class="single-gallery-image" style="background: url(/user/img/elements/2.jpg);"></div></a>
+						<a href="/user/img/aroundog/bot13.jpg" class="img-pop-up"><div class="single-gallery-image" style="background: url(/user/img/aroundog/bot13.jpg);"></div></a>
 					</div>
 					<div class="col-md-6">
-						<a href="/user/img/elements/3.jpg" class="img-pop-up"><div class="single-gallery-image" style="background: url(/user/img/elements/3.jpg);"></div></a>
+						<a href="/user/img/aroundog/bot5.jpg" class="img-pop-up"><div class="single-gallery-image" style="background: url(/user/img/aroundog/bot5.jpg);"></div></a>
 					</div>
 					<div class="col-md-6">
-						<a href="/user/img/elements/4.jpg" class="img-pop-up"><div class="single-gallery-image" style="background: url(/user/img/elements/4.jpg);"></div></a>
+						<a href="/user/img/aroundog/bot10.jpg" class="img-pop-up"><div class="single-gallery-image" style="background: url(/user/img/aroundog/bot10.jpg);"></div></a>
 					</div>
 					<div class="col-md-4">
-						<a href="/user/img/elements/g6.jpg" class="img-pop-up"><div class="single-gallery-image" style="background: url(/user/img/elements/g6.jpg);"></div></a>
+						<a href="/user/img/aroundog/bot9.jpg" class="img-pop-up"><div class="single-gallery-image" style="background: url(/user/img/aroundog/bot9.jpg);"></div></a>
 					</div>
 					<div class="col-md-4">
-						<a href="/user/img/elements/g7.jpg" class="img-pop-up"><div class="single-gallery-image" style="background: url(/user/img/elements/g7.jpg);"></div></a>
+						<a href="/user/img/aroundog/bot8.jpg" class="img-pop-up"><div class="single-gallery-image" style="background: url(/user/img/aroundog/bot8.jpg);"></div></a>
 					</div>
 					<div class="col-md-4">
-						<a href="/user/img/elements/g8.jpg" class="img-pop-up"><div class="single-gallery-image" style="background: url(/user/img/elements/g8.jpg);"></div></a>
+						<a href="/user/img/aroundog/bot7.jpg" class="img-pop-up"><div class="single-gallery-image" style="background: url(/user/img/aroundog/bot7.jpg);"></div></a>
 					</div>
 				</div>
 			</div>

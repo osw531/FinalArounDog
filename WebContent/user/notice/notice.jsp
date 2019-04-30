@@ -53,7 +53,7 @@
 }
 
 .banner-area-min {
-  background: url(../img/aroundog/banner1.jpg) center;
+  background: url(/user/img/aroundog/banner3.jpg) center;
   background-size: cover;
 }
 

@@ -54,7 +54,7 @@
 </head>
 <script>
 function searchword(){
-	$("form").attr({
+	$("form[name='form-search']").attr({
 		action:"/user/freeboard/search",
 		method:"GET"
 	});
@@ -94,7 +94,7 @@ function searchword(){
 					<div class="single-sidebar-widget search-widget">
 						<!-- 셀렉 -->
 											
-						<form class="search-form" action="#">
+						<form class="search-form" name="form-search">
 							<div class="default-select" id="default-select"">
 								<select name="category">
 									<option value="title">제목</option>
@@ -116,6 +116,7 @@ function searchword(){
 							<div class="regdate">글등록일</div>
 							<div class="hit">조회수</div>
 						</div>
+						<form name="form-member">
 						<%int cnt=0; %>
 						<%int num=pager.getNum(); %>
 						<%int curPos=pager.getCurPos(); %>
@@ -123,6 +124,7 @@ function searchword(){
 						<%if(num<1)break; %>
 						<%FreeBoard freeBoard=freeBoardList.get(curPos++); %>
 						<div class="table-row">
+							<input type="hidden" name="member_id" value="<%=freeBoard.getMember().getMember_id()%>">
 							<div class="freeboard_id"><%=num-- %></div>
 							<div class="writer"><%=freeBoard.getMember().getName()%></div>
 							<div class="title" ><div id="category-name">[<%=freeBoard.getCategory() %>]</div>  <a href="/user/freeboard/detail/<%=freeBoard.getFreeboard_id() %>" id="aTag"><%=freeBoard.getTitle() %></a>
@@ -141,7 +143,7 @@ function searchword(){
 							<i class="material-icons" style="font-size:14px" id="lockIcon">lock_outline</i>							
 							<%} %>						
 							</div>
-							
+							</form>
 							<div class="regdate"><%=freeBoard.getRegdate() %></div>
 							<div class="hit"><%=freeBoard.getHit() %></div>
 						</div>
