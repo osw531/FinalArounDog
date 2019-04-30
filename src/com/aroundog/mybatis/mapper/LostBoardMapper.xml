@@ -4,8 +4,8 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="LostBoard">
    <insert id="insert" parameterType="LostBoard" >
-      insert into lostboard(lostboard_id,type_id,title,content,startdate,enddate,lati,longi)
-      values(seq_lostboard.nextval,#{type.type_id},#{title},#{content},#{startdate},#{enddate},#{lati},#{longi})
+      insert into lostboard(lostboard_id,type_id,title,content,startdate,enddate,lati,longi,member_id)
+      values(seq_lostboard.nextval,#{type.type_id},#{title},#{content},#{startdate},#{enddate},#{lati},#{longi},#{member_id})
    <selectKey resultType="int" keyProperty="lostboard_id">
       select seq_lostboard.currval as lostboard_id from dual
    </selectKey>  
@@ -20,7 +20,9 @@
       <result column="lati" property="lati"/>
       <result column="longi" property="longi"/>
       <association column="type_id" property="type" javaType="Type" select="Type.select"></association>
-      <association column="member_id" property="member" javaType="Member" select="Member.select"></association>
+
+      <!-- <association column="member_id" property="member" javaType="Member" select="Member.select"></association> -->
+
    </resultMap>
    
 

@@ -16,6 +16,7 @@
         <typeAlias type="com.aroundog.model.domain.Adoptboard" alias="Adoptboard"/>
         <typeAlias type="com.aroundog.model.domain.LostBoard" alias="LostBoard"/>
         <typeAlias type="com.aroundog.model.domain.LostBoardImg" alias="LostBoardImg"/>
+         <typeAlias type="com.aroundog.model.domain.LostComment" alias="LostComment"/>
         <typeAlias type="com.aroundog.model.domain.Notice" alias="Notice"/>
 	</typeAliases>
 	<mappers>
@@ -31,6 +32,7 @@
         <mapper resource="com/aroundog/mybatis/mapper/AdoptboardMapper.xml"/>
         <mapper resource="com/aroundog/mybatis/mapper/LostBoardMapper.xml"/>
         <mapper resource="com/aroundog/mybatis/mapper/LostBoardImgMapper.xml"/>
+        <mapper resource="com/aroundog/mybatis/mapper/LostCommentMapper.xml"/>
         <mapper resource="com/aroundog/mybatis/mapper/NoticeMapper.xml"/>
 	</mappers>
 </configuration>

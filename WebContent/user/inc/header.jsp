@@ -12,14 +12,14 @@
       <nav id="nav-menu-container">
         <ul class="nav-menu">
           <li class="menu-active"><a href="/user/index.jsp">Home</a></li>
-          <li><a href="about.html">About Us</a></li>
+          <li><a href="/user/about.jsp">About Us</a></li>
           <li><a href="/user/notices">Notice</a></li>
           <li><a href="/user/adopt/adoptboardList">Adoption</a></li>        
           
           <li class="menu-has-children"><a href="">Board</a>
             <ul>
             	<li><a href="/user/freeboards">Free board</a></li>
-            	<li><a href="">Lost board</a></li>
+            	<li><a href="/user/lostboard/lostboardlist">Lost board</a></li>
 
             </ul>
           </li>

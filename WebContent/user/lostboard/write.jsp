@@ -109,6 +109,7 @@
 </script>
 </head>
 <body>
+<%@include file="/user/inc/header.jsp" %>
    <header id="header" id="home">
       <div class="container main-menu">
          <div class="row align-items-center justify-content-between d-flex">
@@ -172,7 +173,7 @@
          </div>
          <div class="row justify-content-center">
             <form class="col-lg-9" enctype="multipart/form-data">
-               <input type="hidden" name="member_id" value="1" />
+               <input type="hidden" name="member_id" value="<%=member.getMember_id()%>" />
                <div class="form-group">
                   <label for="first-name">제목</label> 
                   <input type="text" name="title"   class="form-control" placeholder="제목을 작성해주세요" id="title">

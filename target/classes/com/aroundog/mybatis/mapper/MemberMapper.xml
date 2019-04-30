@@ -19,6 +19,9 @@
 	<select id="select" parameterType="int" resultType="Member">
 		<include refid="sql_select"/> where member_id=#{member_id}
 	</select>
+	<select id="selectByName" parameterType="String" resultType="Member">
+		<include refid="sql_select"/> where name=#{name}
+	</select>
 
 	<insert id="insert" parameterType="Member">
 		insert into member(member_id, id, pass, name, phone, email)

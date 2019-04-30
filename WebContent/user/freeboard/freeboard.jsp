@@ -54,11 +54,21 @@
 </head>
 <script>
 function searchword(){
-	$("form[name='form-search']").attr({
-		action:"/user/freeboard/search",
-		method:"GET"
-	});
-	$("form").submit();
+	if($("select[name='category']").val()=="title"){
+		alert("타이틀 찾기");
+		$("form[name='form-all']").attr({
+			action:"/user/freeboard/searchTitle",
+			method:"GET"
+		});
+		$("form[name='form-all']").submit();
+	}else{
+		alert("사람찾기 찾기");
+		$("form[name='form-all']").attr({
+			action:"/user/freeboard/searchWriter",
+			method:"GET"
+		});
+		$("form[name='form-all']").submit();
+	}
 }
 </script>
 <body>
@@ -84,6 +94,7 @@ function searchword(){
 
 	<!-- Start Align Area -->
 	<!-- 제일 상단 이미지 -->
+
 	<div class="whole-wrap">
 		<div class="container">
 		
@@ -246,7 +257,7 @@ function searchword(){
 			
 			
 		</div>
-	</div>
+
 	<!-- End Align Area -->
 
 <!-- 여기가 제일 밑에 검은 about나오는 곳 -->

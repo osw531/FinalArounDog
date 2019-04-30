@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="LostComment">
+	<insert id="insert" parameterType="LostComment">
+		insert into lostcomment(lostcomment_id,lostboard_id,member_id,content,team,depth)
+		values(seq_lostcomment.nextval,#{lostboard_id},#{member_id},#{content},seq_freeteam.nextval,#{depth})
+	</insert>
+	
+	<sql id="sql_select">
+		select lostcomment_id,lostboard_id,member_id,content,regdate,team,depth from lostcomment
+	</sql>
+	
+	<select id="selectAll" resultType="LostComment">
+		<include refid="sql_select"/> order by team desc, depth asc, lostcomment_id desc
+	</select>
+	
+	<insert id="commentAdd" parameterType="LostComment">
+		insert into lostcomment(lostcomment_id,lostboard_id,member_id,content,team,depth)
+		values(seq_lostcomment.nextval,#{lostboard_id},#{member_id},#{content},#{team},#{depth})
+	</insert>
+	
+	<delete id="delete" parameterType="int">
+		delete from lostcomment where lostcomment_id=#{lostcomment_id}
+	</delete>
+	
+	<delete id="deleteByLostboardId" parameterType="int">
+		delete from lostcomment where lostboard_id=#{lostboard_id}
+	</delete>
+	
+	<delete id="deleteByTeam" parameterType="int">
+		delete from lostcomment where team=#{team}
+	</delete>
+	
+	<delete id="deleteByCommentId" parameterType="int">
+		delete from lostcomment where lostcomment_id = #{lostcomment_id}
+	</delete>
+</mapper>

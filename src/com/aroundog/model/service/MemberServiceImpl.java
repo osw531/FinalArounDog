@@ -61,6 +61,11 @@ public class MemberServiceImpl implements MemberService{
 			throw new DeleteFailException("멤버 삭제 실패");
 		}
 	}
+
+	public Member selectByName(String name) {
+		Member member=memberDAO.selectByName(name);
+		return member;
+	}
 	
 
 }
