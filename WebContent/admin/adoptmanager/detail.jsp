@@ -1,12 +1,12 @@
+<%@page import="com.aroundog.model.domain.Admin"%>
 <%@page import="com.aroundog.model.domain.Adoptboard"%>
 <%@page import="com.aroundog.model.domain.Type"%>
 <%@page import="java.util.List"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%
+	Admin admin=(Admin)request.getSession().getAttribute("admin");
 	List<Type> typeList=(List)request.getAttribute("typeList");
 	Adoptboard adoptboard=(Adoptboard)request.getAttribute("adoptboard");
-	System.out.println("@detail : 관리자가 업로드 게시글 1건 보기:"+adoptboard);
-
 %>
 
 <!DOCTYPE html>

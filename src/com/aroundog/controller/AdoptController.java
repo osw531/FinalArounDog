@@ -49,20 +49,26 @@ public class AdoptController {
    
    
    /*---------------------------------------관리자 관련(입양 업로드 관련)----------------------------------------------------------------*/
-   // 관리자: 입양 업로드  게시글 목록 보기
-   @RequestMapping(value="/admin/adoptboardList", method=RequestMethod.GET)
-   public ModelAndView adoptboardselectAll() {
-      System.out.println("관리자가 입양업로드 목록보기");
-      List adoptboardList= adoptboardService.selectAll();
-      ModelAndView mav = new ModelAndView("admin/adoptmanager/index");
-      mav.addObject("adoptboardList", adoptboardList);
-      return mav;
-   }
+	/*
+	 * // 관리자: 입양 업로드 게시글 목록 보기
+	 * 
+	 * @RequestMapping(value="/admin/adoptboardList", method=RequestMethod.GET)
+	 * public ModelAndView adoptboardselectAll() {
+	 * System.out.println("관리자가 입양업로드 목록보기"); List adoptboardList=
+	 * adoptboardService.selectAll(); ModelAndView mav = new
+	 * ModelAndView("admin/adoptmanager/index"); mav.addObject("adoptboardList",
+	 * adoptboardList); return mav; }
+	 */
    
    // 관리자: 입양 업로드  게시글 1건  보기
    @RequestMapping(value="/admin/adoptmanager/detail", method=RequestMethod.GET)
    public ModelAndView boardSelect(int adoptboard_id) {
       Adoptboard adoptboard= adoptboardService.select(adoptboard_id);
+      System.out.println("adoptboard의 id"+adoptboard.getAdoptboard_id());
+      System.out.println("adoptboard의 강아지가 있나"+adoptboard.getAdoptdog());
+      System.out.println("adoptboard의 강아지 type의 id"+adoptboard.getAdoptdog().getType());
+      System.out.println("adoptboard의 강아지 type의 이름"+adoptboard.getAdoptdog().getType().getInfo());
+      
       List typeList= typeService.selectAll();
       ModelAndView mav = new ModelAndView("admin/adoptmanager/detail");
       mav.addObject("adoptboard", adoptboard);
