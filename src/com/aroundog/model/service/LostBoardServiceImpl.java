@@ -4,22 +4,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.aroundog.common.exception.DeleteFailException;
 import com.aroundog.common.exception.EditFailException;
 import com.aroundog.common.exception.ReportFailException;
 import com.aroundog.common.file.LostBoardImgUploader;
+import com.aroundog.model.domain.Adoptboard;
 import com.aroundog.model.domain.LostBoard;
 import com.aroundog.model.domain.LostBoardImg;
 import com.aroundog.model.domain.ReportImg;
 import com.aroundog.model.repository.LostBoardDAO;
+import com.aroundog.model.repository.LostCommentsDAO;
 
 @Service
 public class LostBoardServiceImpl implements LostBoardService{
    @Autowired
    private LostBoardDAO lostBoardDAO;
+   
+   // 댓글 삭제 트랜잭션 처리
+   @Autowired
+   private LostCommentsDAO dao;
    
    private LostBoardImgUploader uploader = new LostBoardImgUploader();
    
@@ -100,6 +108,7 @@ public class LostBoardServiceImpl implements LostBoardService{
       return keyWordList;
    }
    
+   	
 	@Override
 	public void delete(int lostboard_id) throws DeleteFailException{
 		int result = lostBoardDAO.delete(lostboard_id);
@@ -107,7 +116,19 @@ public class LostBoardServiceImpl implements LostBoardService{
 			throw new DeleteFailException("삭제 실패");
 		}		
 	}
-
+	
+	// 관리자: 임시보호 게시물 삭제
+	@Transactional
+	public void deleteTransaction(int lostboard_id) throws DeleteFailException{
+		int result=lostBoardDAO.delete(lostboard_id); // 게시글 삭제 
+		int result2=dao.delete(lostboard_id); // 댓글 삭제
+		System.out.println("deleteTransaction 호출!!  result :"+result+", result2 : "+result2);
+		
+		if(result==0 || result2==0) {
+			throw new DeleteFailException("임시보호 게시글 삭제 실패");
+		}
+	}
+	
 	@Override
 	public void deleteImg(int lostboard_id) throws DeleteFailException{
 		int result = lostBoardDAO.deleteImg(lostboard_id);
