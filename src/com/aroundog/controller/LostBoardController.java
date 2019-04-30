@@ -23,6 +23,7 @@ import com.aroundog.model.domain.LostBoard;
 import com.aroundog.model.domain.LostBoardImg;
 import com.aroundog.model.domain.Type;
 import com.aroundog.model.service.LostBoardService;
+import com.aroundog.model.service.LostCommentsService;
 import com.aroundog.model.service.TypeService;
 
 @Controller
@@ -31,6 +32,9 @@ public class LostBoardController {
    private TypeService typeService;
    @Autowired
    private LostBoardService lostBoardService;
+   
+   @Autowired
+   private LostCommentsService lostCommentsService;
 
    @Autowired
    private FileManager fileManager;
@@ -183,11 +187,18 @@ public class LostBoardController {
 		return mav;
 	}
 	
+	// 관리자 : 게시글 삭제
+	@RequestMapping(value="/admin/lostboard", method=RequestMethod.GET)
+	public String deleteAll(int lostboard_id) {
+		lostBoardService.deleteTransaction(lostboard_id);
+		return "admin/lostboard/index";
+	}
+	
 	/*---------------------------------------------예외처리-------------------------------------------------------------*/
 
 	@ExceptionHandler(DeleteFailException.class)
-	   public ModelAndView adoptboardDeleteFail(DeleteFailException e) {
-	      ModelAndView mav = new ModelAndView("user/error/adoptError");
+	   public ModelAndView lostboardDeleteFail(DeleteFailException e) {
+	      ModelAndView mav = new ModelAndView("admin/error/lostboardError");
 	      mav.addObject("err", e.getMessage());
 	      return mav;
 	   }
