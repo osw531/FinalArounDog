@@ -56,18 +56,18 @@
 function searchword(){
 	if($("select[name='category']").val()=="title"){
 		alert("타이틀 찾기");
-		$("form[name='form-all']").attr({
+		$("form[name='form-search']").attr({
 			action:"/user/freeboard/searchTitle",
 			method:"GET"
 		});
-		$("form[name='form-all']").submit();
+		$("form[name='form-search']").submit();
 	}else{
 		alert("사람찾기 찾기");
-		$("form[name='form-all']").attr({
+		$("form[name='form-search']").attr({
 			action:"/user/freeboard/searchWriter",
 			method:"GET"
 		});
-		$("form[name='form-all']").submit();
+		$("form[name='form-search']").submit();
 	}
 }
 </script>

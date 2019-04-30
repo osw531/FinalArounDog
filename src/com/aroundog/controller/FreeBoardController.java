@@ -154,7 +154,7 @@ public class FreeBoardController {
 		return "redirect:/user/freeboard/detail/regist/"+freeboard_id;//리스트로 이동
 	}
 	
-	//검색하기
+	//검색하기(제목)
 	@RequestMapping(value="/user/freeboard/searchTitle", method=RequestMethod.GET)
 	public ModelAndView freeBoardSearchTitle(String category,String searchword,HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView("user/freeboard/freeboard");
@@ -180,11 +180,13 @@ public class FreeBoardController {
 		
 		return mav;
 	}
+	//검색하기(작성자)
 	@RequestMapping(value="/user/freeboard/searchWriter", method=RequestMethod.GET)
 	public ModelAndView freeBoardSearchWriter(int member_id,String searchword,HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView("user/freeboard/freeboard");
 		System.out.println("서치 들어오니??");
 		System.out.println(member_id);
+		Member member=memberService.selectByName(name);
 		List searchList=null;
 		List fcList=freeCommentService.selectAll();
 	

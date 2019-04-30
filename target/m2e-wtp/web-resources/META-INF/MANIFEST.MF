@@ -1,10 +1,15 @@
 Manifest-Version: 1.0
 <<<<<<< HEAD
+<<<<<<< HEAD
 Built-By: SJ
 Build-Jdk: 1.8.0_161
 =======
 Built-By: user
 Build-Jdk: 1.8.0_191
 >>>>>>> aroundog-master/ohseone
+=======
+Built-By: hyonaa
+Build-Jdk: 11.0.1
+>>>>>>> aroundog-master/hyona
 Created-By: Maven Integration for Eclipse
 

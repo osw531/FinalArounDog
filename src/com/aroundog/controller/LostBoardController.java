@@ -194,7 +194,12 @@ public class LostBoardController {
 		System.out.println("lostboardList 사이즈는 " + lostboardList.size());
 		return mav;
 	}
+<<<<<<< HEAD
 
+=======
+	
+	/*
+>>>>>>> aroundog-master/hyona
 	// 관리자 : 임시보호글 작성자 이름으로 검색
 	@RequestMapping(value = "/admin/lostboardSearchId", method = RequestMethod.GET)
 	@ResponseBody
@@ -211,13 +216,42 @@ public class LostBoardController {
 		json.put("hit", lostboard.getHit());
 		json.put("lati", lostboard.getLati());
 		json.put("longi", lostboard.getLongi());
-		json.put("type", lostboard.getType());
-		json.put("member", lostboard.getMember());
+		json.put("type_id", lostboard.getType().getType_id());
+		json.put("type_info", lostboard.getType().getInfo());
+		json.put("member_member_id", lostboard.getMember().getMember_id());
+		json.put("member_id", lostboard.getMember().getId());
+		json.put("member_pass", lostboard.getMember().getPass());
+		json.put("member_name", lostboard.getMember().getName());
+		json.put("member_phone", lostboard.getMember().getPhone());
+		json.put("member_email", lostboard.getMember().getEmail());
 		System.out.println(json.toString());
 
 		return json.toString();
 	}
+<<<<<<< HEAD
 
+=======
+	*/
+	
+	// 관리자 : 임시보호글 1개 검색
+	@RequestMapping(value="/admin/lostboardSearch", method=RequestMethod.GET)
+	public ModelAndView lostboardSearchId(int lostboard_id) {
+		LostBoard lostboardSearch= lostBoardService.select(lostboard_id);
+		ModelAndView mav= new ModelAndView("admin/lostboard/index");
+		mav.addObject("lostboardSearch", lostboardSearch);
+		return mav;
+	}
+	
+	// 관리자 : 게시글 1건 상세보기
+	@RequestMapping(value="/admin/lostboard", method=RequestMethod.GET)
+	public ModelAndView lostboardDetail(int lostboard_id) {
+		LostBoard lostboard= lostBoardService.select(lostboard_id);
+		ModelAndView mav= new ModelAndView("admin/lostboard/detail");
+		mav.addObject("lostboard", lostboard);
+		return mav;
+	}
+	
+>>>>>>> aroundog-master/hyona
 	/*---------------------------------------------예외처리-------------------------------------------------------------*/
 
 	@ExceptionHandler(DeleteFailException.class)

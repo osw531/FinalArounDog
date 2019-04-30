@@ -7,6 +7,7 @@
 <%
 	Admin admin=(Admin)request.getSession().getAttribute("admin");
 	List<LostBoard> lostboardList = (List)request.getAttribute("lostboardList");
+	LostBoard lostboardSearch = (LostBoard)request.getAttribute("lostboardSearch");
 %>  
 
 <!DOCTYPE html>
@@ -32,27 +33,16 @@ integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zF
 <script>
 <%@ include file="/admin/inc/pagechange.jsp" %>
 
-function search(){
+function lostboardSearch(){
    var lostboard_id=$("input[name='lostboard_id']").val();
-   alert(lostboard_id);
    
-	$.ajax({
-		url:"/admin/lostboardSearchId",
-		type:"get",
-		data:{
-			"lostboard_id":lostboard_id
-		},
-		success:function(result){
-			var json = JSON.parse(result);
-			alert("성공 데이터는"+json);
-		},
-		error:function(result){
-			alert("실패<br>"+result);
-		}
-	});
+	location.href="/admin/lostboardSearch?lostboard_id="+lostboard_id;
 }
-function goDetail(){
-	alert();
+function goDetail(lostboard_id){
+	window.open("/admin/lostboard?lostboard_id="+lostboard_id,"detail","width=450, height=600, scrollbars=1, menubar=0, top=100, left=400, location=0, resizable=no")
+}
+function getList(){
+	location.href="/admin/lostboardList";
 }
 </script>
 <body>
@@ -64,6 +54,7 @@ function goDetail(){
 <button class="tablink" type="button"><i class="far fa-comment-alt"    style="font-size:20px"></i>  게시판관리</button>
 <button class="tablink" type="button"><i class="fas fa-dog" style="font-size:20px"></i>  입양게시물관리</button>
 <button class="tablink" type="button"><i class="fas fa-dog" style="font-size:20px"></i>  임보게시판관리</button>
+<button class="tablink" type="button"><i class="fas fa-dog" style="font-size:20px"></i>  공지사항관리</button>
 </form>
 
 <div id="AdoptManager" class="tabcontent">
@@ -71,16 +62,16 @@ function goDetail(){
 <div class="container">
   <h2 style="color:gray">임시보호 게시글 관리</h2>
   <br>
-  <form class="form-inline" name="search-form">
+
   <label class="mb-2 mr-sm-2" style="color:black">게시글 검색:</label>
   <input type="text" class="form-control mb-2 mr-sm-2" width="30%" placeholder="게시글 번호를 입력해주세요" name="lostboard_id"/>
-  <button class="btn btn-primary mb-2" onClick="search()">검색</button>
-  </form>
+  <button class="btn btn-primary mb-2" onClick="lostboardSearch()" type="button">검색</button>
+  <button class="btn btn-primary mb-2" onClick="getList()" type="button">전체보기</button>
   
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>번호</th>
+        <th>게시글 번호</th>
         <th>제목</th>
         <th>작성자</th>
         <th>작성일</th>
@@ -91,18 +82,28 @@ function goDetail(){
     
     <form name="detail-form">
     <tbody>
-    <%for(int i=0;i<lostboardList.size();i++){ %>
-    <%LostBoard lostboard = lostboardList.get(i); %> 
-      <tr>
-        <td><%= lostboard.getLostboard_id()%></td>
-        <td><%= lostboard.getTitle()%></td>
-        <td><%= lostboard.getMember().getName()%></td>
-        <td><%= lostboard.getRegdate().substring(0,10)%></td>
-        <td><%= lostboard.getMember().getPhone()%></td>
-        <td><button class="btn btn-light" onClick="goDetail()">상세보기</button></td>
-      </tr>
+    <%if(lostboardSearch!=null){ %>
+    	<tr>
+	        <td><%= lostboardSearch.getLostboard_id()%></td>
+	        <td><%= lostboardSearch.getTitle()%></td>
+	        <td><%= lostboardSearch.getMember().getName()%></td>
+	        <td><%= lostboardSearch.getRegdate().substring(0,10)%></td>
+	        <td><%= lostboardSearch.getMember().getPhone()%></td>
+	        <td><button class="btn btn-light" onClick="goDetail(<%=lostboardSearch.getLostboard_id() %>)" type="button">상세보기</button></td>
+	      </tr>
+    <%}else{ %>
+	    <%for(int i=0;i<lostboardList.size();i++){ %>
+	    <%LostBoard lostboard = lostboardList.get(i); %> 
+	      <tr>
+	        <td><%= lostboard.getLostboard_id()%></td>
+	        <td><%= lostboard.getTitle()%></td>
+	        <td><%= lostboard.getMember().getName()%></td>
+	        <td><%= lostboard.getRegdate().substring(0,10)%></td>
+	        <td><%= lostboard.getMember().getPhone()%></td>
+	        <td><button class="btn btn-light" onClick="goDetail(<%=lostboard.getLostboard_id() %>)" type="button">상세보기</button></td>
+	      </tr>
+	      <%} %>
       <%} %>
-      
     </tbody>
     </form> 
     
