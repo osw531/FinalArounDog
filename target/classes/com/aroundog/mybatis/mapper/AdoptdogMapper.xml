@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Adoptdog">
+	
+	<sql id="sql_select">
+		select adoptdog_id, vaccin_id, neut_id, location_id, type_id, age, feature, gender, img from adoptdog
+	</sql>
+	
+	<resultMap type="Adoptdog" id="typemap">
+		<id column="adoptdog_id" property="adoptdog_id"/>
+		<result column="vaccin_id" property="vaccin_id"/>
+		<result column="neut_id" property="neut_id"/>
+		<result column="location_id" property="location_id"/>
+		<result column="age" property="age"/>
+		<result column="feature" property="feature"/>
+		<result column="gender" property="gender"/>
+		<result column="img" property="img"/>
+		<association column="type_id" property="type" javaType="Type" select="Type.select"/>
+	</resultMap>
+
+	<select id="selectAll" resultMap="typemap">
+		<include refid="sql_select"/> order by adoptdog_id desc
+	</select>
+
+	<select id="select" resultMap="typemap" parameterType="int">
+		<include refid="sql_select"/> where adoptdog_id=#{adoptdog_id}
+	</select>
+
+	<insert id="insert" parameterType="Adoptdog">
+		insert into adoptdog(adoptdog_id, vaccin_id, neut_id, location_id, type_id, age, feature, gender, img)
+		values(seq_adoptdog.nextval, #{vaccin_id},#{neut_id},#{location_id},#{type.type_id},#{age},#{feature},#{gender},#{img})
+		<selectKey resultType="int" keyProperty="adoptdog_id">
+			select seq_adoptdog.currval as adoptdog_id from dual		
+		</selectKey> 
+	</insert>
+	
+	<update id="update" parameterType="Adoptdog">
+		update adoptdog set vaccin_id=#{vaccin_id}, neut_id=#{neut_id}, location_id=#{location_id}, type_id=#{type.type_id}
+		, age=#{age}, feature=#{feature}, gender=#{gender}, img=#{img} where adoptdog_id=#{adoptdog_id}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete from adoptdog where adoptdog_id=#{adoptdog_id}
+	</delete>
+	
+	
+</mapper>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Adopt">
+	
+	<sql id="sql_select">
+		select adopt_id, adoptboard_id, member_id, content, regdate, envir, phone, email, checking from adopt
+	</sql>
+	
+	<resultMap type="Adopt" id="adoptmap">
+		<id column="adopt_id" property="adopt_id"/>
+		<result column="content" property="content"/>
+		<result column="regdate" property="regdate"/>
+		<result column="envir" property="envir"/>
+		<result column="phone" property="phone"/>
+		<result column="email" property="email"/>
+		<result column="checking" property="checking"/>
+		<association column="adoptboard_id" property="adoptboard" javaType="Adoptboard" select="Adoptboard.select"/>
+		<association column="member_id" property="member" javaType="Member" select="Member.select"/>
+	</resultMap>
+	
+	<insert id="insert" parameterType="Adopt">
+		insert into adopt(adopt_id, content, envir, phone, email, checking, adoptboard_id, member_id)
+		values(seq_adopt.nextval, #{content},#{envir},#{phone},#{email}, '0', #{adoptboard.adoptboard_id},#{member.member_id}) 
+	</insert>
+	
+	<select id="selectAll" resultMap="adoptmap">
+		<include refid="sql_select"/> order by adopt_id desc
+	</select>
+	
+	<select id="select" parameterType="int" resultMap="adoptmap">
+		<include refid="sql_select"/> where adopt_id=#{adopt_id}
+	</select>
+	
+	<update id="update" parameterType="Adopt">
+		update adopt set content=#{content}, envir=#{envir}, phone=#{phone}, email=#{email}, checking='1' where adopt_id=#{adopt_id}
+	</update>
+	
+</mapper>

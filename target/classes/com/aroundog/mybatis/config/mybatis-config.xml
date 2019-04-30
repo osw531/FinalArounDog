@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.aroundog.model.domain.Admin" alias="Admin"/>
+		<typeAlias type="com.aroundog.model.domain.FreeBoard" alias="FreeBoard"/>
+		<typeAlias type="com.aroundog.model.domain.Adopt" alias="Adopt"/>
+		<typeAlias type="com.aroundog.model.domain.Report" alias="Report"/>
+    	<typeAlias type="com.aroundog.model.domain.ReportImg" alias="ReportImg"/>
+    	<typeAlias type="com.aroundog.model.domain.FreeComment" alias="FreeComment"/>
+    	<typeAlias type="com.aroundog.model.domain.Member" alias="Member"/>
+    	<typeAlias type="com.aroundog.model.domain.Type" alias="Type"/>
+        <typeAlias type="com.aroundog.model.domain.Adoptdog" alias="Adoptdog"/>
+        <typeAlias type="com.aroundog.model.domain.Adoptboard" alias="Adoptboard"/>
+        <typeAlias type="com.aroundog.model.domain.LostBoard" alias="LostBoard"/>
+        <typeAlias type="com.aroundog.model.domain.LostBoardImg" alias="LostBoardImg"/>
+        <typeAlias type="com.aroundog.model.domain.Notice" alias="Notice"/>
+	</typeAliases>
+	<mappers>
+		<mapper resource="com/aroundog/mybatis/mapper/AdminMapper.xml" />
+ 		<mapper resource="com/aroundog/mybatis/mapper/FreeBoardMapper.xml" />
+ 		<mapper resource="com/aroundog/mybatis/mapper/AdoptMapper.xml" />
+ 		<mapper resource="com/aroundog/mybatis/mapper/ReportMapper.xml"/>
+        <mapper resource="com/aroundog/mybatis/mapper/ReportImgMapper.xml"/>
+        <mapper resource="com/aroundog/mybatis/mapper/FreeCommentMapper.xml"/>
+        <mapper resource="com/aroundog/mybatis/mapper/MemberMapper.xml" />
+        <mapper resource="com/aroundog/mybatis/mapper/TypeMapper.xml"/>
+        <mapper resource="com/aroundog/mybatis/mapper/AdoptdogMapper.xml"/>
+        <mapper resource="com/aroundog/mybatis/mapper/AdoptboardMapper.xml"/>
+        <mapper resource="com/aroundog/mybatis/mapper/LostBoardMapper.xml"/>
+        <mapper resource="com/aroundog/mybatis/mapper/LostBoardImgMapper.xml"/>
+        <mapper resource="com/aroundog/mybatis/mapper/NoticeMapper.xml"/>
+	</mappers>
+</configuration>
