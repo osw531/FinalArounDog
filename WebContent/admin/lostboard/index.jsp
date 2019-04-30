@@ -32,7 +32,7 @@ integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zF
 <script>
 <%@ include file="/admin/inc/pagechange.jsp" %>
 
-function search(){
+function searchId(){
    var lostboard_id=$("input[name='lostboard_id']").val();
    alert(lostboard_id);
    
@@ -52,7 +52,7 @@ function search(){
 	});
 }
 function goDetail(){
-	alert();
+	window.open("/admin/lostboard/detail.jsp","detail","width=450, height=600, scrollbars=1, menubar=0, top=100, left=400")
 }
 </script>
 <body>
@@ -74,7 +74,7 @@ function goDetail(){
   <form class="form-inline" name="search-form">
   <label class="mb-2 mr-sm-2" style="color:black">게시글 검색:</label>
   <input type="text" class="form-control mb-2 mr-sm-2" width="30%" placeholder="게시글 번호를 입력해주세요" name="lostboard_id"/>
-  <button class="btn btn-primary mb-2" onClick="search()">검색</button>
+  <button class="btn btn-primary mb-2" onClick="searchId()" type="button">검색</button>
   </form>
   
   <table class="table table-striped">
@@ -99,7 +99,7 @@ function goDetail(){
         <td><%= lostboard.getMember().getName()%></td>
         <td><%= lostboard.getRegdate().substring(0,10)%></td>
         <td><%= lostboard.getMember().getPhone()%></td>
-        <td><button class="btn btn-light" onClick="goDetail()">상세보기</button></td>
+        <td><button class="btn btn-light" onClick="goDetail()" type="button">상세보기</button></td>
       </tr>
       <%} %>
       
