@@ -14,7 +14,7 @@
           <li class="menu-active"><a href="/user/index.jsp">Home</a></li>
           <li><a href="about.html">About Us</a></li>
           <li><a href="/user/notices">Notice</a></li>
-          <li><a href="dogs.html">Adoption</a></li>        
+          <li><a href="/user/adopt/adoptboardList">Adoption</a></li>        
           
           <li class="menu-has-children"><a href="">Board</a>
             <ul>
