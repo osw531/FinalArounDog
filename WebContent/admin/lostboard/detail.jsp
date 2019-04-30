@@ -1,4 +1,8 @@
+<%@page import="com.aroundog.model.domain.LostBoard"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%
+	LostBoard lostboard = (LostBoard)request.getAttribute("lostboard");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,10 +11,10 @@
 </head>
 <script>
 window.onload=function(){
-	alert("작동!!!");
+	//alert("작동!!!");
 }
 </script>
 <body>
-
+<%=lostboard.getContent() %>
 </body>
 </html>
