@@ -187,11 +187,9 @@ public String delete(int adoptboard_id) {
    @RequestMapping(value="/user/adopt/adoption", method=RequestMethod.POST)
    public String adoptRegist(Adopt adopt, HttpServletRequest request) {
       Member member=(Member)request.getSession().getAttribute("member");
-      
       int adoptboard_id=adopt.getAdoptboard_id();
       Adoptboard adoptboard=adoptboardService.select(adoptboard_id);
       adopt.setAdoptboard(adoptboard);
-      
       adopt.setMember(member);
       adoptService.insert(adopt);
       return "redirect:/user/adopt/adoptboardList";
