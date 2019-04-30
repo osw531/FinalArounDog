@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Member">
+	
+	<sql id="sql_select">
+		select member_id, id, pass, name, phone, email from member
+	</sql>
+	
+	<select id="loginCheck" parameterType="Member" resultType="Member">
+		<include refid="sql_select"/> where id=#{id} and pass=#{pass}
+	</select>
+	
+	<select id="selectAll" resultType="Member">
+		<include refid="sql_select"/> order by member_id asc
+	</select>
+	
+	<select id="select" parameterType="int" resultType="Member">
+		<include refid="sql_select"/> where member_id=#{member_id}
+	</select>
+
+	<insert id="insert" parameterType="Member">
+		insert into member(member_id, id, pass, name, phone, email)
+		values(seq_member.nextval,#{id},#{pass},#{name},#{phone},#{email})
+	</insert>
+	
+	<update id="update" parameterType="Member">
+		update member set id=#{id}, pass=#{pass}, name=#{name}, phone=#{phone}, email=#{email}
+		where member_id=#{member_id}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		delete from member where member_id=#{member_id}
+	</delete>
+	
+
+</mapper>

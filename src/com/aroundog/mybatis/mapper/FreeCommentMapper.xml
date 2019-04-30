@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="FreeComment">
+
+	<sql id="sql_select">
+		select freecomment_id,freeboard_id,member_id,content,regdate,team,depth from freecomment
+	</sql>
+	<select id="selectAll"  resultType="FreeComment">
+		<include refid="sql_select"/> order by team desc,depth asc,freecomment_id desc
+	</select>
+
+	<insert id="insert" parameterType="FreeComment">
+		insert into freecomment(freecomment_id,freeboard_id,member_id,content,team,depth)
+		values(seq_freecomment.nextval,#{freeboard_id},#{member_id},#{content},seq_freeteam.nextval,#{depth})
+	</insert>
+	
+	<insert id="commentAdd" parameterType="FreeComment">
+		insert into freecomment(freecomment_id,freeboard_id,member_id,content,team,depth)
+		values(seq_freecomment.nextval,#{freeboard_id},#{member_id},#{content},#{team},#{depth})
+	</insert>
+	
+	<delete id="delete" parameterType="int">
+		delete from freecomment where freecomment_id=#{freecomment_id}
+	</delete>
+	
+	<!-- 자유게시판 글 삭제하면 댓글도 삭제하기 위해 -->
+	<delete id="deleteByFreeboardId" parameterType="int">
+		delete from freecomment where freeboard_id=#{freeboard_id}
+	</delete>
+	<!-- 팀으로삭제  -->
+	<delete id="deleteByTeam" parameterType="int">
+		delete from freecomment where team=#{team}
+	</delete>
+	<!-- 대댓글 한건 삭제 -->
+	<delete id="deleteByCommentId" parameterType="int">
+		delete from freecomment where freecomment_id=#{freecomment_id}
+	</delete>
+
+</mapper>

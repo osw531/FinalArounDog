@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Report">
+   <insert id="insert" parameterType="Report">
+      insert into report(report_id,title,content,email,phone,lati,longi)
+      values(seq_report.nextval,#{title},#{content},#{email},#{phone},#{lati},#{longi})
+   <selectKey resultType="int" keyProperty="report_id">
+      select seq_report.currval as report_id from dual
+   </selectKey>   
+   </insert>
+   
+   <sql id="sql_select">
+      select report_id,title,content,regdate,email,phone,lati,longi,checking
+      from report
+   </sql>
+   
+   <select  id="selectAll" resultType="Report" >
+      <include refid="sql_select"/> order by report_id desc
+   </select>
+   
+   <select id="select" parameterType="int" resultType="Report">
+      <include refid="sql_select"/> where report_id=#{report_id}
+   </select>
+   
+   <update id="update" parameterType="int">
+      update report set checking = '1'
+      where report_id = #{report_id}
+   </update>
+</mapper>
