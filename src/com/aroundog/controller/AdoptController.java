@@ -174,6 +174,15 @@ public String delete(int adoptboard_id) {
    }
    
    /*------------------------------------------유저 관련(입양)----------------------------------------------------*/
+	// 유저 : 입양게시물 리스트 가져오기
+	   @RequestMapping(value="/user/adopt/adoptboardList", method=RequestMethod.GET)
+	   public ModelAndView adoptboardSelectAll() {
+	      List adoptboardList= adoptboardService.selectAll();
+	      ModelAndView mav= new ModelAndView("user/adopt/adoptboardList");
+	      mav.addObject("adoptboardList", adoptboardList);
+	      return mav;
+	   } 
+   
    // 유저 : 입양신청 등록하기
    @RequestMapping(value="/user/adopt/adoption", method=RequestMethod.POST)
    public String adoptRegist(Adopt adopt, HttpServletRequest request) {
@@ -187,15 +196,6 @@ public String delete(int adoptboard_id) {
       adoptService.insert(adopt);
       return "redirect:/user/adopt/adoptboardList";
    }
-
-   // 유저 : 입양게시물 리스트 가져오기
-   @RequestMapping(value="/user/adopt/adoptboardList", method=RequestMethod.GET)
-   public ModelAndView adoptboardSelectAll() {
-      List adoptboardList= adoptboardService.selectAll();
-      ModelAndView mav= new ModelAndView("user/adopt/adoptboardList");
-      mav.addObject("adoptboardList", adoptboardList);
-      return mav;
-   } 
 
    // 유저:강아지 한마리의 상세보기
    @RequestMapping(value="/user/adopt/adoptboardDetail", method=RequestMethod.GET)
