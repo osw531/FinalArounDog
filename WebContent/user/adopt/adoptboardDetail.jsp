@@ -118,7 +118,6 @@ function goDelete(adoptboard_id){
 				</div>
 			</div>
 						<div>
-							<input type="button" class="primary-btn text-uppercase col-lg-12" value="해당 입양 게시물 삭제" onClick='goDelete(<%=board.getAdoptboard_id()%>)'>
 							<%=board.getContent()%>
 						</div>
 		</div>
