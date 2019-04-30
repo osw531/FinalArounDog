@@ -6,6 +6,7 @@
 	Admin admin=(Admin)request.getSession().getAttribute("admin");
 	List<Adoptboard> adoptboardList=(List)request.getAttribute("adoptboardList"); 
 	System.out.println("@index.jsp : 넘어온 adoptboardList : "+adoptboardList.size());
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -55,12 +56,13 @@ function goRegist(){ //페이지 이동
 </head>
 <body>
 <form>
-<div class="loginName" style="text-align:right"><%-- <%=admin.getId() %> --%>님 로그인중</div>
+<div class="loginName" style="text-align:right"><%=admin.getId() %>님 로그인중</div>
 <button class="tablink" type="button"><i class="fas fa-user-friends" style="font-size:20px"></i>  회원관리</button> 
 <button class="tablink" type="button"><i class="fas fa-bullhorn" style="font-size:20px"></i>  제보관리</button>
 <button class="tablink" type="button"><i class="far fa-edit" style="font-size:20px"></i>  입양신청관리</button>
 <button class="tablink" type="button"><i class="far fa-comment-alt" 	style="font-size:20px"></i>  게시판관리</button>
 <button class="tablink" type="button"><i class="fas fa-dog" style="font-size:20px"></i>  입양게시물관리</button>
+<button class="tablink" type="button"><i class="fas fa-dog" style="font-size:20px"></i>  임보게시판관리</button>
 </form>
 <div id="AdoptManager" class="tabcontent">
   <h3>입양게시물 관리</h3>
@@ -80,10 +82,11 @@ function goRegist(){ //페이지 이동
 	  <tr>
 	  	<td><%=adoptboard.getAdoptboard_id() %></td>
 	    <td><%=adoptboard.getAdoptdog().getType().getInfo() %></td>
-	    <td><%=adoptboard.getTitle() %></td>
+	  	<td><%=adoptboard.getTitle() %></td>
 	    <td><%=adoptboard.getRegdate() %></td> 
 	    <td>
 	    	<input type="button" value="상세보기" onClick="goDetail(<%=adoptboard.getAdoptboard_id()%>)"/>
+	    </td>
 	  </tr>
   <%} %>
   

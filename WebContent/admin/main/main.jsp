@@ -71,11 +71,8 @@ body, html {
 <button class="tablink" type="button" onclick="openPage('Notice', this, 'light-gray')"><i class="fas fa-dog" style="font-size:20px"></i>  공지사항관리</button>
 </form>
 <div id="User" class="tabcontent">
-<%-- <%FreeBoard freeBoard=freeBoardList.get(0);%>  --%>
   <h3>회원관리</h3>
   <p>Home is where the heart is..</p>
-<div><%-- <%=freeBoard.getContent() %> --%></div>
-  
 </div>
 
 <div id="Report" class="tabcontent">

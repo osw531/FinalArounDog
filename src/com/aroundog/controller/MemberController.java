@@ -29,30 +29,28 @@ public class MemberController {
 	
 	//================관리자 영역===================
 	//멤버 목록보기
-	@RequestMapping(value="/admin/member/list", method=RequestMethod.GET)
-	public ModelAndView showMemberList() {
-		System.out.println("/admin/member/list");
-		List memberList=memberService.selectAll();
-		ModelAndView mav=new ModelAndView();
-		mav.setViewName("admin/member/index"); //admin/member/index.jsp
-		mav.addObject("memberList", memberList);
-		return mav; //List<Member> memberList=(List)request.getParameter("memberList");
-	}
+	/*
+	 * @RequestMapping(value="/admin/member/list", method=RequestMethod.GET) public
+	 * ModelAndView showMemberList() { System.out.println("/admin/member/list");
+	 * List memberList=memberService.selectAll(); ModelAndView mav=new
+	 * ModelAndView(); mav.setViewName("admin/member/index");
+	 * //admin/member/index.jsp mav.addObject("memberList", memberList); return mav;
+	 * }
+	 */
+	
 	//멤버 상세 보기
 	@RequestMapping(value="/admin/member/detail", method=RequestMethod.GET)
 	public ModelAndView detail(int member_id) {
-		System.out.println("/admin/member/detail");
-		System.out.println("list에서 넘겨받은 member_id:"+member_id);
+		System.out.println("넘겨준 member_id "+member_id);
 		Member member=memberService.select(member_id);
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("admin/member/detail");
 		mav.addObject("member", member);
-		return mav; //Member member=request.getParameter("member");
+		return mav;
 	}		
 	//멤버 수정
 	@RequestMapping(value="/admin/member/edit", method=RequestMethod.POST)
 	public ModelAndView edit(Member member) {
-		System.out.println("/admin/member/editt호출");
 		memberService.update(member);
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("admin/member/detail");
@@ -62,9 +60,8 @@ public class MemberController {
 	//멤버 삭제
 	@RequestMapping(value="/admin/member/delete", method=RequestMethod.GET)
 	public String del(int member_id) {
-		System.out.println("/admin/member/delete 호출");
 		memberService.delete(member_id);
-		return "redirect:/admin/member/list";
+		return "redirect:/admin/memberList";
 	}
 	
 	//================유저 영역===================

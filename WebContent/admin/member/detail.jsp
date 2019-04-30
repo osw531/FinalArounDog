@@ -1,6 +1,8 @@
+<%@page import="com.aroundog.model.domain.Admin"%>
 <%@page import="com.aroundog.model.domain.Member"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%
+	Admin admin=(Admin)request.getSession().getAttribute("admin");
 	Member member=(Member)request.getAttribute("member");
 %>
 
@@ -56,7 +58,7 @@ input[type=button]:hover {
 			edit();
 		});
 		$($("input[type='button']")[1]).click(function(){
-			location.href="/admin/member/list";
+			location.href="/admin/memberList";
 		});
 	});
 
@@ -75,9 +77,9 @@ function edit(){
 </head>
 <body>
 
-<h3>회원 상세정보</h3>
 
 <div class="container">
+	<h3>회원 상세정보</h3>
   <form >
     <input type="hidden" name="member_id" value="<%=member.getMember_id()%>"> 
    
@@ -86,7 +88,7 @@ function edit(){
     <input type="text" name="name" value="<%=member.getName()%>">
     <input type="text" name="phone" value="<%=member.getPhone()%>">
     <input type="text" name="email" value="<%=member.getEmail()%>">
-    <input type="button" value="확인">
+    <input type="button" value="수정">
     <input type="button" value="목록">
   </form>
 </div>

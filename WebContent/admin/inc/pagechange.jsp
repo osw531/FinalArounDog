@@ -37,7 +37,7 @@ function openPage(pageName,elmnt,color) {
 	elmnt.style.backgroundColor = color;
 }
 function userList(){
-	location.href="/admin/members";
+	location.href="/admin/memberList";
 }
 function reportList(){
 	location.href="/reports";
@@ -49,7 +49,7 @@ function freeBoadList(){
 	location.href="/admin/freeboard";
 }
 function adoptManagerList(){
-	location.href="/admin/adoptmanagers";
+	location.href="/admin/adoptboardList";
 }
 function lostboardList(){
    location.href="/admin/lostboardList";

@@ -5,7 +5,7 @@
 <%
 	List<Type> typeList=(List)request.getAttribute("typeList");
 	Adoptboard adoptboard=(Adoptboard)request.getAttribute("adoptboard");
-	System.out.println("@detail : 관리자가 업로드 게시글 1건 보기:"+adoptboard);
+	System.out.println("@detail : 강아지 type의 이름:"+adoptboard.getAdoptdog().getType().getInfo());
 
 %>
 
