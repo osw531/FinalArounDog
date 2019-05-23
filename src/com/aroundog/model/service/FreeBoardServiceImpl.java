@@ -20,18 +20,18 @@ public class FreeBoardServiceImpl implements FreeBoardService{
 		List freeBoardList=freeBoardDAO.selectAll();
 		return freeBoardList;
 	}
-
-	public void delete(int freeboard_id) throws DeleteFailException{
+	
+	public void delete(int freeboard_id) throws EditFailException{
 		int result=freeBoardDAO.delete(freeboard_id);
 		if (result == 0) {
-	         throw new DeleteFailException("삭제 실패!!");
+	         throw new EditFailException("삭제 실패!!");
 	    }	
 	}
 
-	public void insert(FreeBoard freeboard) throws RegistFailException{
+	public void insert(FreeBoard freeboard) throws EditFailException{
 		int result=freeBoardDAO.insert(freeboard);
 		if (result == 0) {
-	         throw new RegistFailException("등록 실패!!");
+	         throw new EditFailException("등록 실패!!");
 	    }	
 	}
 
@@ -60,8 +60,8 @@ public class FreeBoardServiceImpl implements FreeBoardService{
 		return searchList;
 	}
 
-	public List selectByTitle(String searchWord) {	
-		List searchList=freeBoardDAO.selectByTitle(searchWord);
+	public List selectByTitle(String searchword) {	
+		List searchList=freeBoardDAO.selectByTitle(searchword);
 		return searchList;
 	}
 

@@ -23,10 +23,10 @@ public class ReportServiceImpl implements ReportService {
    
    private ReportImgUploader uploader = new ReportImgUploader();
    @Override
-   public void insert(Report report) throws ReportFailException {
+   public void insert(Report report) throws EditFailException {
       int result = reportDAO.insert(report);
       if (result == 0) {
-         throw new ReportFailException("제보 실패!!");
+         throw new EditFailException("제보 실패!!");
       }
    }
    @Override
@@ -45,7 +45,7 @@ public class ReportServiceImpl implements ReportService {
    }
 
    @Override
-   public void update(int report_id) {
+   public void update(int report_id) throws EditFailException{
       int result = reportDAO.update(report_id);
       if (result == 0) {
          throw new EditFailException("확인 실패");
@@ -53,7 +53,7 @@ public class ReportServiceImpl implements ReportService {
    }
 
    @Override
-   public void insertImg(MultipartFile[] myFile, Report report, String realPath) throws ReportFailException {
+   public void insertImg(MultipartFile[] myFile, Report report, String realPath) throws EditFailException {
       String[] imgList = uploader.returnFilename(myFile, report,realPath); // System.out.println("서비스에서 받은;
       int result = 0;
       for (int i = 0; i < imgList.length; i++) {
@@ -63,7 +63,7 @@ public class ReportServiceImpl implements ReportService {
          result = reportDAO.insertImg(ri);
       }
       if (result == 0) {
-         throw new ReportFailException("제보 실패!!");
+         throw new EditFailException("제보 실패!!");
       }
    }
 }

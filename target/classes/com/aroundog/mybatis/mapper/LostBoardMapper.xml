@@ -20,9 +20,7 @@
       <result column="lati" property="lati"/>
       <result column="longi" property="longi"/>
       <association column="type_id" property="type" javaType="Type" select="Type.select"></association>
-
-      <!-- <association column="member_id" property="member" javaType="Member" select="Member.select"></association> -->
-
+      <association column="member_id" property="member" javaType="Member" select="Member.select"></association>
    </resultMap>
    
 
@@ -39,18 +37,19 @@
    </select>
    
    <select id="selectById" parameterType="int" resultMap="lostBoardType">
-   	select * from lostboard where lostboard_id=#{lostboard_id}
+      select * from lostboard where lostboard_id=#{lostboard_id}
    </select>
    
    <update id="update" parameterType="int">
       update lostboard set hit = hit+1 where lostboard_id = #{lostboard_id}
    </update>
    
-   	<delete id="delete" parameterType="int">
-		delete from lostboard where lostboard_id=#{lostboard_id}
-	</delete>
-	
-	<update id="updateLostBoard" parameterType="LostBoard">
-		update lostboard set title=#{title}, content=#{content}, startdate=#{startdate},enddate=#{enddate},lati=#{lati},longi=#{longi},type_id=#{type.type_id}
-	</update>
+      <delete id="delete" parameterType="int">
+      delete from lostboard where lostboard_id=#{lostboard_id}
+   </delete>
+   
+   <update id="updateLostBoard" parameterType="LostBoard">
+      update lostboard set title=#{title}, content=#{content}, startdate=#{startdate},enddate=#{enddate},lati=#{lati},longi=#{longi},type_id=#{type.type_id}
+  	  where lostboard_id=#{lostboard_id}
+   </update>
 </mapper>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="LostBoardImg">
+   
+   <resultMap type="LostBoardImg" id="lostBoardImgg">
+      <id column="lostboardimg_id" property="lostboardimg_id"/>
+      <result column="img" property="img"/>
+      <association column="lostboard_id" property="lostboard"
+      javaType="LostBoard" select="LostBoard.selectId"></association>
+   </resultMap>
+
+   <insert id="insert_img" parameterType="LostBoardImg">
+      insert into lostboardimg(img,lostboard_id)
+      values(#{img},#{lostboard.lostboard_id})
+   </insert>
+   
+   <select id="selectImgList" resultType="LostBoardImg" parameterType="int">
+      select * from lostboardimg where lostboard_id = #{lostboard_id}
+   </select>
+   
+   
+   <select id="selectThumb" resultType="LostBoardImg" parameterType="int" resultMap="lostBoardImgg">
+	   select * from lostboardimg
+	   where lostboard_id=#{lostboard_id} order by lostboardimg_id asc
+	   limit 0,1
+   </select>
+   
+   
+   
+   <select id="selectAll" resultType="LostBoardImg">
+      select * from lostboardimg
+   </select>
+   
+      <delete id="delete" parameterType="int"> 
+      delete from lostboardimg where lostboard_id=#{lostboard.lostboard_id}
+   </delete>
+   
+   <select id="selectAllImgById">
+      select * from lostboardimg where lostboard_id = #{lostboard_id}
+   </select>
+   
+   <update id="updateLostBoardImg" parameterType="LostBoardImg">
+      update lostboardimg set img = #{img}
+      where lostboard_id = #{lostboard.lostboard_id} and lostboardimg_id=#{lostboardimg_id}
+   </update>
+</mapper>

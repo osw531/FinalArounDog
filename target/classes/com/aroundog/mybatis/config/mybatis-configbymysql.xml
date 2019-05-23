@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.aroundog.model.domain.Admin" alias="Admin"/>
+		<typeAlias type="com.aroundog.model.domain.FreeBoard" alias="FreeBoard"/>
+		<typeAlias type="com.aroundog.model.domain.Adopt" alias="Adopt"/>
+		<typeAlias type="com.aroundog.model.domain.Report" alias="Report"/>
+    	<typeAlias type="com.aroundog.model.domain.ReportImg" alias="ReportImg"/>
+    	<typeAlias type="com.aroundog.model.domain.FreeComment" alias="FreeComment"/>
+    	<typeAlias type="com.aroundog.model.domain.Member" alias="Member"/>
+    	<typeAlias type="com.aroundog.model.domain.Type" alias="Type"/>
+        <typeAlias type="com.aroundog.model.domain.Adoptdog" alias="Adoptdog"/>
+        <typeAlias type="com.aroundog.model.domain.Adoptboard" alias="Adoptboard"/>
+        <typeAlias type="com.aroundog.model.domain.LostBoard" alias="LostBoard"/>
+        <typeAlias type="com.aroundog.model.domain.LostBoardImg" alias="LostBoardImg"/>
+         <typeAlias type="com.aroundog.model.domain.LostComment" alias="LostComment"/>
+        <typeAlias type="com.aroundog.model.domain.Notice" alias="Notice"/>
+	</typeAliases>
+	<mappers>
+		<mapper resource="com/aroundog/mybatis/mapper/MysqlAdminMapper.xml" />
+ 		<mapper resource="com/aroundog/mybatis/mapper/MysqlFreeBoardMapper.xml" />
+ 		<mapper resource="com/aroundog/mybatis/mapper/MysqlAdoptMapper.xml" />
+ 		<mapper resource="com/aroundog/mybatis/mapper/MysqlReportMapper.xml"/>
+        <mapper resource="com/aroundog/mybatis/mapper/MysqlReportImgMapper.xml"/>
+        <mapper resource="com/aroundog/mybatis/mapper/MysqlFreeCommentMapper.xml"/>
+        <mapper resource="com/aroundog/mybatis/mapper/MysqlMemberMapper.xml" />
+        <mapper resource="com/aroundog/mybatis/mapper/MysqlTypeMapper.xml"/>
+        <mapper resource="com/aroundog/mybatis/mapper/MysqlAdoptdogMapper.xml"/>
+        <mapper resource="com/aroundog/mybatis/mapper/MysqlAdoptboardMapper.xml"/>
+        <mapper resource="com/aroundog/mybatis/mapper/MysqlLostBoardMapper.xml"/>
+        <mapper resource="com/aroundog/mybatis/mapper/MysqlLostBoardImgMapper.xml"/>
+        <mapper resource="com/aroundog/mybatis/mapper/MysqlLostCommentMapper.xml"/>
+        <mapper resource="com/aroundog/mybatis/mapper/MysqlNoticeMapper.xml"/>
+	</mappers>
+</configuration>

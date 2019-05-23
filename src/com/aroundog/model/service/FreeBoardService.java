@@ -12,5 +12,5 @@ public interface FreeBoardService {
 	public FreeBoard select(int freeboard_id);
 	public void updateHitCnt(int freeboard_id);
 	public List selectByWriter(int member_id);
-	public List selectByTitle(String searchWord);
+	public List selectByTitle(String searchword);
 }

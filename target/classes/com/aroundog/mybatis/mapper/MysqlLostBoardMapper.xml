@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="LostBoard">
+   <insert id="insert" parameterType="LostBoard" >
+      insert into lostboard(type_id,title,content,startdate,enddate,lati,longi,member_id)
+      values(#{type.type_id},#{title},#{content},#{startdate},#{enddate},#{lati},#{longi},#{member_id})
+   <selectKey resultType="int" keyProperty="lostboard_id">
+      select max(lostboard_id) from lostboard
+   </selectKey>  
+   </insert>
+
+   <resultMap type="LostBoard" id="lostBoardType">
+      <id column="lostboard_id" property="lostboard_id"/>
+      <result column="title" property="title"/>
+      <result column="content" property="content"/>
+      <result column="startdate" property="startdate"/>
+      <result column="enddate" property="enddate"/>
+      <result column="lati" property="lati"/>
+      <result column="longi" property="longi"/>
+      <association column="type_id" property="type" javaType="Type" select="Type.select"></association>
+      <association column="member_id" property="member" javaType="Member" select="Member.select"></association>
+   </resultMap>
+   
+
+    <select id="selectAll" resultMap="lostBoardType">
+      select * from lostboard order by lostboard_id asc
+   </select> 
+   
+   <select id="select" resultMap="lostBoardType" parameterType="int">
+      select * from lostboard where lostboard_id=#{lostboard_id}
+   </select>
+   
+      <select id="selectId" resultType="LostBoard" parameterType="int">
+      select lostboard_id from lostboard where lostboard_id=#{lostboard_id}
+   </select>
+   
+   <select id="selectById" parameterType="int" resultMap="lostBoardType">
+      select * from lostboard where lostboard_id=#{lostboard_id}
+   </select>
+   
+   <update id="update" parameterType="int">
+      update lostboard set hit = hit+1 where lostboard_id = #{lostboard_id}
+   </update>
+   
+      <delete id="delete" parameterType="int">
+      delete from lostboard where lostboard_id=#{lostboard_id}
+   </delete>
+   
+   <update id="updateLostBoard" parameterType="LostBoard">
+      update lostboard set title=#{title}, content=#{content}, startdate=#{startdate},enddate=#{enddate},lati=#{lati},longi=#{longi},type_id=#{type.type_id} 
+      where lostboard_id=#{lostboard_id}
+   </update>
+</mapper>

@@ -53,31 +53,31 @@ public class MybatisLostBoardDAO implements LostBoardDAO{
       return sessionTemplate.selectList("LostBoardImg.selectAll");
    }
    
-	@Override
-	public int delete(int lostboard_id) {
-		return sessionTemplate.delete("LostBoard.delete", lostboard_id);
-	}
+   @Override
+   public int delete(int lostboard_id) {
+      return sessionTemplate.delete("LostBoard.delete", lostboard_id);
+   }
 
-	@Override
-	public int deleteImg(int lostboard_id) {
-		return sessionTemplate.delete("LostBoardImg.delete", lostboard_id);
-	}
+   @Override
+   public int deleteImg(int lostboard_id) {
+      return sessionTemplate.delete("LostBoardImg.delete", lostboard_id);
+   }
 
 
-	@Override
-	public int updateLostBoard(LostBoard lostBoard) {
-		return sessionTemplate.update("LostBoard.updateLostBoard", lostBoard);
-	}
+   @Override
+   public int updateLostBoard(LostBoard lostBoard) {
+      return sessionTemplate.update("LostBoard.updateLostBoard", lostBoard);
+   }
 
-	@Override
-	public int updateLostBoardImg(LostBoardImg lostBoardImg) {
-		return sessionTemplate.update("LostBoardImg.updateLostBoardImg", lostBoardImg);
-	}
+   @Override
+   public int updateLostBoardImg(LostBoardImg lostBoardImg) {
+      return sessionTemplate.update("LostBoardImg.updateLostBoardImg", lostBoardImg);
+   }
 
-	
-	@Override
-	public LostBoard selectById(int lostboard_id) {
-		return sessionTemplate.selectOne("LostBoard.selectById", lostboard_id);
-	}
+   
+   @Override
+   public LostBoard selectById(int lostboard_id) {
+      return sessionTemplate.selectOne("LostBoard.selectById", lostboard_id);
+   }
 
 }

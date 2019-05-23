@@ -3,37 +3,52 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="LostComment">
-	<insert id="insert" parameterType="LostComment">
-		insert into lostcomment(lostcomment_id,lostboard_id,member_id,content,team,depth)
-		values(seq_lostcomment.nextval,#{lostboard_id},#{member_id},#{content},seq_freeteam.nextval,#{depth})
-	</insert>
-	
-	<sql id="sql_select">
-		select lostcomment_id,lostboard_id,member_id,content,regdate,team,depth from lostcomment
-	</sql>
-	
-	<select id="selectAll" resultType="LostComment">
-		<include refid="sql_select"/> order by team desc, depth asc, lostcomment_id desc
-	</select>
-	
-	<insert id="commentAdd" parameterType="LostComment">
-		insert into lostcomment(lostcomment_id,lostboard_id,member_id,content,team,depth)
-		values(seq_lostcomment.nextval,#{lostboard_id},#{member_id},#{content},#{team},#{depth})
-	</insert>
-	
-	<delete id="delete" parameterType="int">
-		delete from lostcomment where lostcomment_id=#{lostcomment_id}
-	</delete>
-	
-	<delete id="deleteByLostboardId" parameterType="int">
-		delete from lostcomment where lostboard_id=#{lostboard_id}
-	</delete>
-	
-	<delete id="deleteByTeam" parameterType="int">
-		delete from lostcomment where team=#{team}
-	</delete>
-	
-	<delete id="deleteByCommentId" parameterType="int">
-		delete from lostcomment where lostcomment_id = #{lostcomment_id}
-	</delete>
+   <resultMap type="LostComment" id="lostCommentType">
+      <id column="lostcomment_id" property="lostcomment_id"/>
+      <result column="lostboard_id" property="lostboard_id"/>
+      <result column="content" property="content"/>
+      <result column="regdate" property="regdate"/>
+      <result column="team" property="team"/>
+      <result column="depth" property="depth"/>
+      <association column="member_id" property="member" javaType="Member" select="Member.select"></association>
+   </resultMap>
+
+   <insert id="insert" parameterType="LostComment">
+      insert into lostcomment(lostcomment_id,lostboard_id,member_id,content,team,depth)
+      values(seq_lostcomment.nextval,#{lostboard_id},#{member_id},#{content},seq_freeteam.nextval,#{depth})
+   </insert>
+   
+   <sql id="sql_select">
+      select lostcomment_id,lostboard_id,member_id,content,regdate,team,depth from lostcomment
+   </sql>
+   
+   <select id="selectAll" resultType="LostComment">
+      <include refid="sql_select"/> order by team desc, depth asc, lostcomment_id desc
+   </select>
+   
+   <insert id="commentAdd" parameterType="LostComment">
+      insert into lostcomment(lostcomment_id,lostboard_id,member_id,content,team,depth)
+      values(seq_lostcomment.nextval,#{lostboard_id},#{member_id},#{content},#{team},#{depth})
+   </insert>
+   
+   <delete id="delete" parameterType="int">
+      delete from lostcomment where lostcomment_id=#{lostcomment_id}
+   </delete>
+   
+   <delete id="deleteByLostboardId" parameterType="int">
+      delete from lostcomment where lostboard_id=#{lostboard_id}
+   </delete>
+   
+   <delete id="deleteByTeam" parameterType="int">
+      delete from lostcomment where team=#{team}
+   </delete>
+   
+   <!-- 관리자 모드 -->
+   <delete id="deleteByCommentId" parameterType="int">
+      delete from lostcomment where lostcomment_id = #{lostcomment_id}
+   </delete>
+   
+   <select id="select" parameterType="int" resultMap="lostCommentType">
+      <include refid="sql_select"/> where lostboard_id=#{lostboard_id}
+   </select>
 </mapper>

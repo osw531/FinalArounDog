@@ -37,9 +37,7 @@
 		<include refid="sql_select"/> where member_id=#{member_id}
 		order by freeboard_id desc
 	</select>
-	
-	
-	
+
 	<select id="selectByTitle" parameterType="String" resultType="FreeBoard">
 		<include refid="sql_select"/> where title like '%'||#{searchword}||'%'
 		order by freeboard_id desc

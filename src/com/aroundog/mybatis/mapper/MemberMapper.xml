@@ -12,6 +12,10 @@
 		<include refid="sql_select"/> where id=#{id} and pass=#{pass}
 	</select>
 	
+	<select id="idCheck" parameterType="String" resultType="Member">
+      <include refid="sql_select"/> where id=#{id}
+    </select>
+	
 	<select id="selectAll" resultType="Member">
 		<include refid="sql_select"/> order by member_id asc
 	</select>
@@ -32,6 +36,11 @@
 		update member set id=#{id}, pass=#{pass}, name=#{name}, phone=#{phone}, email=#{email}
 		where member_id=#{member_id}
 	</update>
+	
+	<update id="updateUser" parameterType="Member">
+      update member set id=#{id}, name=#{name}, phone=#{phone}, email=#{email}
+      where member_id=#{member_id}
+    </update>
 
 	<delete id="delete" parameterType="int">
 		delete from member where member_id=#{member_id}

@@ -41,10 +41,12 @@ public class MybatisFreeBoardDAO implements FreeBoardDAO{
 		return sqlSessionTemplate.selectList("FreeBoard.selectByWriter",member_id);
 	}
 
-	public List selectByTitle(String searchWord) {
-		return sqlSessionTemplate.selectList("FreeBoard.selectByTitle",searchWord);
+	public List selectByTitle(String searchword) {
+		System.out.println("word : "+searchword);
+		return sqlSessionTemplate.selectList("FreeBoard.selectByTitle",searchword);
 	}
 
+	
 	
 
 }

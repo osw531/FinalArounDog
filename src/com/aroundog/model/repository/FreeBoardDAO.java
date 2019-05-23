@@ -12,6 +12,6 @@ public interface FreeBoardDAO {
 	public FreeBoard select(int freeboard_id);
 	public int updateHitCnt(int freeboard_id);
 	public List selectByWriter(int member_id);
-	public List selectByTitle(String searchWord);
+	public List selectByTitle(String searchword);
 	
 }

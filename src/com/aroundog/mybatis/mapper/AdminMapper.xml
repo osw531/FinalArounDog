@@ -5,7 +5,8 @@
 <mapper namespace="Admin">
 
 	<select id="login" parameterType="Admin" resultType="Admin">
-		select * from Admin where id = #{id} and pass=#{pass}
+		select * from admin where id = #{id} and pass=#{pass}
 	</select>
+	
 
 </mapper>

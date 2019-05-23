@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="FreeBoard">
+
+	<sql id="sql_select">
+		select freeboard_id,member_id,category,title,content,regdate,hit,secret from freeboard
+	</sql>
+	<select id="selectAll"  resultType="FreeBoard">
+		<include refid="sql_select"/> order by freeboard_id desc
+	</select>
+
+	<delete id="delete" parameterType="int">
+		delete from freeboard where freeboard_id=#{freeboard_id}
+	</delete>
+	
+	
+	<select id="select" parameterType="int" resultType="FreeBoard">
+		<include refid="sql_select"/> where freeboard_id=#{freeboard_id}
+	</select>
+	
+	<update id="updateHitCnt" parameterType="int">
+		update freeboard set hit = hit+1 where freeboard_id=#{freeboard_id}
+	</update>
+	
+	<update id="update" parameterType="FreeBoard">
+		update freeboard set title=#{title},content=#{content},category=#{category},secret=#{secret} where freeboard_id=#{freeboard_id}
+	</update>
+	
+	<insert id="insert" parameterType="FreeBoard">
+		insert into freeboard(member_id,title,content,secret,category)
+		values(#{member_id},	#{title},#{content},#{secret},#{category})
+	</insert>
+	
+	<select id="selectByWriter" parameterType="int" resultType="FreeBoard">
+		<include refid="sql_select"/> where member_id=#{member_id}
+		order by freeboard_id desc
+	</select>
+	
+	<select id="selectByTitle" parameterType="String" resultType="FreeBoard">
+		<include refid="sql_select"/> where title like concat('%',#{searchword},'%')
+		order by freeboard_id desc
+	</select>
+	
+</mapper>

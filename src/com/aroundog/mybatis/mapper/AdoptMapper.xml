@@ -37,4 +37,8 @@
 		update adopt set content=#{content}, envir=#{envir}, phone=#{phone}, email=#{email}, checking='1' where adopt_id=#{adopt_id}
 	</update>
 	
+	<delete id="delete" parameterType="int">
+      delete from adopt where adopt_id=#{adopt_id}
+    </delete>
+	
 </mapper>

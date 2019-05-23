@@ -9,4 +9,5 @@ public interface AdoptDAO {
 	public List selectAll();
 	public Adopt select(int adopt_id);
 	public int update(Adopt adopt);
+	public int delete(int adopt_id);
 }

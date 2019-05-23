@@ -18,11 +18,11 @@ public interface LostBoardService {
    public LostBoardImg selectThumb(int lostboard_id);
    public List selectAllImg();
    public List getKeyWordList(List lostBoardList);
-   public void deleteTransaction(int lostboard_id);
    public void delete(int lostboard_id);
-   public void deleteImg(int lostboard_id);
+   public void deleteImg(int lostboard_id,List<LostBoardImg> fileList,String dir);
+   public void deleteTransaction(int lostboard_id);
    public void updateLostBoard(LostBoard lostboard);
-   public void updateLostBoardImg(MultipartFile[] myFile,List<LostBoardImg> oriList,LostBoard lostBoard,LostBoardImg lostBoardImg, String realPath);
+   public void updateLostBoardImg(MultipartFile[] myFile,List<LostBoardImg> fileList,LostBoard lostBoard,String realPath,int lostboard_id);
    public LostBoard selectById(int lostboard_id);
 
 }

@@ -10,8 +10,10 @@
 
 	<!-- 웹에서는 프론트로 옮겨야함 아니면 안먹음(트랜잭션 매니저만 안먹음)  -->
 	<!-- 데이타소스 빈 -->
+<!-- 	<jee:jndi-lookup id="dataSource"
+		jndi-name="jdbc/myoracle" resource-ref="true" /> -->
 	<jee:jndi-lookup id="dataSource"
-		jndi-name="jdbc/myoracle" resource-ref="true" />
+		jndi-name="jdbc/mysql" resource-ref="true" />
 
 	
 
@@ -19,7 +21,7 @@
 	<bean id="sqlSessionFactoryBean"
 		class="org.mybatis.spring.SqlSessionFactoryBean"
 		p:dataSource-ref="dataSource"
-		p:configLocation="classpath:com/aroundog/mybatis/config/mybatis-config.xml" />
+		p:configLocation="classpath:com/aroundog/mybatis/config/mybatis-configbymysql.xml" />
 
 	<!-- 마이바티스 템플릿 빈 -->
 	<bean id="sqlSessionTemplate"

@@ -32,4 +32,9 @@ public class MybatisAdoptDAO implements AdoptDAO{
 	public int update(Adopt adopt) {
 		return sessionTemplate.update("Adopt.update", adopt);
 	}
+
+	public int delete(int adopt_id) {
+
+		return sessionTemplate.delete("Adopt.delete", adopt_id);
+	}
 }

@@ -9,4 +9,5 @@ public interface AdoptService {
 	public List selectAll();
 	public Adopt select(int adopt_id);
 	public void update(Adopt adopt);
+	public void delete(int adopt_id);
 }

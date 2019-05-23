@@ -10,6 +10,9 @@ public interface MemberService {
 	public Member select(int member_id);
 	public void insert(Member member);
 	public void update(Member member);
+	public void updateUser(Member member);
 	public void delete(int member_id);
 	public Member selectByName(String name);
+	public Member idCheck(String id);
+	
 }

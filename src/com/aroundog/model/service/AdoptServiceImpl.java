@@ -42,4 +42,10 @@ public class AdoptServiceImpl implements AdoptService{
 			throw new AdoptRegistFailException("수정에 실패하였습니다");
 		}
 	}
+	public void delete(int adopt_id) throws AdoptRegistFailException{
+		int result= adoptDAO.delete(adopt_id);
+		if(result==0) {
+			throw new AdoptRegistFailException("삭제에 실패하였습니다");
+	}
+   }
 }

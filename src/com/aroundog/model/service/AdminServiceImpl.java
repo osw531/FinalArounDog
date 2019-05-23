@@ -14,12 +14,12 @@ public class AdminServiceImpl implements AdminService{
 	@Qualifier("mybatisAdminDAO")
 	private AdminDAO adminDAO;
 
-	public Admin loginCheck(Admin admin) {
-		Admin obj=adminDAO.loginCheck(admin);
-		if(obj==null) {
-			throw new LoginFailException("관리자 로그인 실패");
-		}
-		return obj;
-	}
+	public Admin loginCheck(Admin admin) throws LoginFailException{
+       Admin obj=adminDAO.loginCheck(admin);
+       if(obj==null) {
+          throw new LoginFailException("아이디와 비밀번호를 확인해주세요");
+       }
+       return obj;
+    }
 
 }

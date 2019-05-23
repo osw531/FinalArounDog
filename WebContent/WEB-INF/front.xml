@@ -14,7 +14,7 @@
 	
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-		p:prefix="/" p:suffix=".jsp" />
+		p:prefix="/WEB-INF/" p:suffix=".jsp" />
 	
 	<mvc:annotation-driven>
 		<mvc:message-converters>
@@ -41,6 +41,25 @@
 	
 	<bean id="multipartResolver"
       class="org.springframework.web.multipart.commons.CommonsMultipartResolver"></bean>
+      
+   	      <!-- 메일발송 -->
+   <bean id="mailSender"
+      class="org.springframework.mail.javamail.JavaMailSenderImpl">
+      <property name="host" value="smtp.gmail.com" />
+      <property name="port" value="587" />
+      <property name="username" value="aroundogmanager@gmail.com"/>
+      <property name="password" value="djfkdnsemehrm" />
+      <property name="javaMailProperties">
+         <props>
+            <prop key="mail.smtp.auth">true</prop>
+            <prop key="mail.smtp.starttls.enable">true</prop>
+         </props>
+      </property>
+   </bean>
+      
+   <!-- AOP처리 -->
+   <aop:aspectj-autoproxy/>
+   <bean id="loginCheck" class="com.aroundog.commons.LoginCheck"/>
       
 	  <!--트랜잭션 처리  -->
    <tx:annotation-driven/>

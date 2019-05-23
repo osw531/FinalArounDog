@@ -15,8 +15,11 @@ public class LoginCheck {
    /*------------------------------------------관리자 페이지 로그인 체크------------------------------------------------------*/
    @Pointcut("execution(public * com.aroundog.controller.AdminController.go*(..))")
    public void logincut() {} // ID역할
+   @Pointcut("execution(public * com.aroundog.controller.AdoptController.go*(..))")
+   public void adoptcut() {} // ID역할
+
    
-   @Around("logincut()")
+   @Around("logincut() || adoptcut() ")
    public String sessionCheck(ProceedingJoinPoint jp) throws Throwable {
       String viewName=null;
       HttpServletRequest request=null;
@@ -49,8 +52,14 @@ public class LoginCheck {
    public void adoptCheck() {}
    @Pointcut("execution(public * com.aroundog.controller.ReportController.goReport(..))")
    public void reportCheck() {}
+   @Pointcut("execution(public * com.aroundog.controller.FreeBoardController.insert(..))")
+   public void freeboardCheck() {}
+   @Pointcut("execution(public * com.aroundog.controller.FreeCommentController.go*(..))")
+   public void commentCheck() {}
+   @Pointcut("execution(public * com.aroundog.controller.LostCommentController.go*(..))")
+   public void lostcommentCheck() {}
    
-   @Around("adoptCheck() || reportCheck()")
+   @Around("adoptCheck() || reportCheck() || freeboardCheck() || commentCheck() || lostcommentCheck()" )
    public String memberLoginCheck(ProceedingJoinPoint jp) throws Throwable {
       String viewName=null;
       HttpServletRequest request=null;
